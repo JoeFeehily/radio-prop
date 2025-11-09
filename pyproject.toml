@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "radio-prop"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "JoeFeehily", email = "joefeehily@live.co.uk" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/JoeFeehily/radio-prop#readme"
+Issues = "https://github.com/JoeFeehily/radio-prop/issues"
+Source = "https://github.com/JoeFeehily/radio-prop"
+
+[tool.hatch.version]
+path = "src/radio_prop/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/radio_prop tests}"
+
+[tool.coverage.run]
+source_pkgs = ["radio_prop", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/radio_prop/__about__.py",
+]
+
+[tool.coverage.paths]
+radio_prop = ["src/radio_prop", "*/radio-prop/src/radio_prop"]
+tests = ["tests", "*/radio-prop/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
